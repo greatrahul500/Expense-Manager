@@ -1,4 +1,4 @@
-const V="billtracker-v2",CORE=["./","./Bill_Tracker_Mobile_Final.html","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
+const V="billtracker-v3",CORE=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>Promise.allSettled(CORE.map(u=>c.add(u)))).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{const r=e.request,u=new URL(r.url);if(r.method!=="GET"||/(^|\.)(googleapis|google|gstatic)\.com$/.test(u.hostname)&&!/fonts/.test(u.hostname)||u.hostname==="api.anthropic.com")return;
